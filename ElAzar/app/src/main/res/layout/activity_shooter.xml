@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 10. Juego "Disparos".
+    El usuario apunta y dispara al blanco; puede jugar contra la PC o contra otro jugador.
+    Práctica 7: ImageView, Button y TextView de resultados sobre ConstraintLayout.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:fillViewport="true"
+    tools:context=".ShooterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingBottom="@dimen/space_lg">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_topbar"
+            android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+            app:title="@string/shooter_title"
+            app:titleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ===== Mesa con el blanco ===== -->
+        <LinearLayout
+            android:id="@+id/layoutTable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_table"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/space_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <TextView
+                style="@style/Azar_font.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shooter_tap_hint"
+                android:textColor="@color/azar_cream" />
+
+            <FrameLayout
+                android:id="@+id/frameTarget"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="@dimen/space_sm"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <ImageView
+                    android:id="@+id/imageTarget"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/shooter_title"
+                    android:src="@drawable/ic_game_shooter" />
+
+                <!-- Marca de impacto: se mueve al tocar el blanco -->
+                <TextView
+                    android:id="@+id/textImpact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="✚"
+                    android:textColor="@color/azar_red"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textScore"
+                style="@style/Azar_font.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:gravity="center"
+                android:textColor="@color/white"
+                tools:text="Puntaje: 120" />
+
+            <TextView
+                android:id="@+id/textAmmo"
+                style="@style/Azar_font.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/azar_cream"
+                tools:text="Municiones: 6 de 6" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonFire"
+                style="@style/Widget.ElAzar.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/space_md"
+                android:onClick="onFireClicked"
+                android:text="@string/shooter_fire"
+                app:icon="@drawable/ic_game_shooter"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTint="@null" />
+        </LinearLayout>
+
+        <!-- ===== Skins ===== -->
+        <TextView
+            android:id="@+id/textSkinLabel"
+            style="@style/Azar_font.Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/shooter_skin_choose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTable" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSkins"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            app:singleSelection="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSkinLabel">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSkinClassic"
+                style="@style/Widget.ElAzar.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/skin_classic" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSkinNeon"
+                style="@style/Widget.ElAzar.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skin_neon" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSkinWood"
+                style="@style/Widget.ElAzar.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skin_wood" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSkinGold"
+                style="@style/Widget.ElAzar.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skin_gold" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ===== Modo de juego ===== -->
+        <LinearLayout
+            android:id="@+id/rowModes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupSkins">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDuel"
+                style="@style/Widget.ElAzar.Button.Outlined"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/space_sm"
+                android:layout_weight="1"
+                android:text="@string/shooter_gun_1v1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonVsPc"
+                style="@style/Widget.ElAzar.Button.Outlined"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@string/shooter_gun_pc" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowExtras"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowModes">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSkin"
+                style="@style/Widget.ElAzar.Button.Tonal"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/space_sm"
+                android:layout_weight="1"
+                android:text="@string/shooter_skin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLobby"
+                style="@style/Widget.ElAzar.Button.Tonal"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@string/shooter_lobby" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textDataProtection"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:background="@drawable/bg_pill_cream"
+            android:gravity="center"
+            android:padding="@dimen/space_sm"
+            android:text="@string/data_protection"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowExtras" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

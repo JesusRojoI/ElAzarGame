@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#7D1F1F" />
+  <title>El Azar · Prototipo navegable</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="stage">
+    <div class="phone" id="phone">
+      <!-- Barra de estado -->
+      <div class="status-bar" id="statusBar">
+        <span class="status-time">10:22</span>
+        <span class="status-icons" aria-hidden="true">
+          <svg class="ico-signal" viewBox="0 0 24 24"><path d="M2 20h20L2 4v16z" fill="currentColor"/></svg>
+          <svg class="ico-wifi" viewBox="0 0 24 24"><path d="M12 20.5 8.5 16a5.5 5.5 0 0 1 7 0l-3.5 4.5zM4.5 12a12 12 0 0 1 15 0l-2 2.2a9 9 0 0 0-11 0L4.5 12zM1.5 8.4a17 17 0 0 1 21 0l-2 2.2a14 14 0 0 0-17 0l-2-2.2z" fill="currentColor"/></svg>
+          <svg class="ico-battery" viewBox="0 0 28 24"><rect x="1" y="7" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="9" width="16" height="6" rx="1" fill="currentColor"/><path d="M25 10h2v4h-2z" fill="currentColor"/></svg>
+        </span>
+      </div>
+
+      <main class="app" id="app">
+        <!-- ============================================================
+             PANTALLA 1 · INICIO DE SESIÓN
+             ============================================================ -->
+        <section class="screen" id="login" aria-hidden="true" data-title="Inicio de sesión">
+          <div class="screen-body login-body">
+            <div class="brand">
+              <img class="brand-die" src="assets/dado.png" alt="Dado de El Azar" />
+              <h1 class="brand-name">El Azar</h1>
+              <p class="brand-welcome">¡Bienvenido!</p>
+              <p class="brand-tagline">Juegos de azar en tiempo real</p>
+            </div>
+
+            <div class="panel login-panel">
+              <h2 class="panel-title">Inicia Sesión</h2>
+
+              <label class="field">
+                <span class="field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.4-8 5.2V22h16v-2.8C20 16.4 16.4 14 12 14z" fill="currentColor"/></svg>
+                </span>
+                <input id="loginUser" type="text" autocomplete="username" placeholder="Tu @usuario o correo" />
+              </label>
+
+              <label class="field">
+                <span class="field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2 4 5v7c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3zm0 3.2 5 1.9V12c0 3.4-2.1 6.1-5 7.2-2.9-1.1-5-3.8-5-7.2V7.1l5-1.9z" fill="currentColor"/></svg>
+                </span>
+                <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Contraseña" />
+                <span class="field-trailing" aria-hidden="true">•••</span>
+              </label>
+
+              <button class="btn btn-primary btn-block" data-go="dashboard">
+                <img class="btn-icon" src="assets/coin.png" alt="" /> Entrar
+              </button>
+              <button class="link-btn" data-dialog="forgot">Olvidé mi contraseña</button>
+            </div>
+
+            <p class="social-label">ó Inicio Sesión con:</p>
+            <div class="two-col social-row">
+              <button class="btn btn-outline" data-go="dashboard">
+                <img class="btn-icon" src="assets/google.png" alt="" /> Google
+              </button>
+              <button class="btn btn-outline" data-go="dashboard">
+                <img class="btn-icon" src="assets/facebook.png" alt="" /> Facebook
+              </button>
+            </div>
+
+            <button class="btn btn-orange btn-block register-cta" data-go="register">¿Eres nuevo? Crea tu cuenta</button>
+
+            <p class="legal">El Azar es un juego responsable. Solo para mayores de 18 años.</p>
+            <p class="brand-footer">El Azar Juegos · 2026®</p>
+            <button class="pill protection-pill" data-dialog="privacy">🔒 Protección de datos</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 2 · CREAR CUENTA
+             ============================================================ -->
+        <section class="screen" id="register" aria-hidden="true" data-title="Crear cuenta" data-back="login">
+          <div class="screen-body register-body">
+            <div class="plain-head">
+              <button class="round-btn" data-action="back" aria-label="Regresar">
+                <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+              </button>
+              <h1 class="plain-title">Crear cuenta</h1>
+            </div>
+            <p class="subtitle">Únete a la mesa y empieza a jugar</p>
+
+            <div class="panel">
+              <label class="field">
+                <input type="text" autocomplete="name" placeholder="Nombre completo" />
+              </label>
+              <label class="field">
+                <input type="email" autocomplete="email" placeholder="Correo electrónico" />
+              </label>
+              <label class="field field-prefix">
+                <span class="prefix">@</span>
+                <input type="text" placeholder="Nombre de usuario" />
+              </label>
+              <label class="field">
+                <span class="field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2 4 5v7c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3zm0 3.2 5 1.9V12c0 3.4-2.1 6.1-5 7.2-2.9-1.1-5-3.8-5-7.2V7.1l5-1.9z" fill="currentColor"/></svg>
+                </span>
+                <input type="password" placeholder="Contraseña (mínimo 8 caracteres)" />
+                <span class="field-trailing" aria-hidden="true">•••</span>
+              </label>
+              <label class="field">
+                <span class="field-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 2 4 5v7c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3zm0 3.2 5 1.9V12c0 3.4-2.1 6.1-5 7.2-2.9-1.1-5-3.8-5-7.2V7.1l5-1.9z" fill="currentColor"/></svg>
+                </span>
+                <input type="password" placeholder="Confirmar contraseña" />
+                <span class="field-trailing" aria-hidden="true">•••</span>
+              </label>
+
+              <label class="check terms">
+                <input type="checkbox" checked />
+                <span class="check-box" aria-hidden="true"></span>
+                <span>Acepto los términos, la política de privacidad y las reglas de juego responsable (+18).</span>
+              </label>
+
+              <button class="btn btn-primary btn-block" data-go="dashboard">Registrarme</button>
+            </div>
+
+            <button class="btn btn-outline btn-block" data-go="login">¿Ya tienes cuenta? Inicia sesión</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 3 · DASHBOARD
+             ============================================================ -->
+        <section class="screen" id="dashboard" aria-hidden="true" data-title="El Azar">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="drawer" aria-label="Abrir menú">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">El Azar</h1>
+            <button class="topbar-btn info-btn" data-action="options" aria-label="Más opciones"><span>i</span></button>
+          </header>
+
+          <div class="screen-body dashboard-body">
+            <div class="greeting">
+              <span class="avatar-ring"><img src="assets/avatar.png" alt="Avatar de @usuario.G" /></span>
+              <h2>Hola, @<span class="js-user">usuario.G</span></h2>
+            </div>
+
+            <div class="balance-card">
+              <div>
+                <p class="balance-label">SALDO DISPONIBLE</p>
+                <p class="balance-value js-balance">$ 1,250.00</p>
+                <p class="balance-online">1 284 jugadores en línea</p>
+              </div>
+              <img class="balance-coin" src="assets/coin.png" alt="" />
+            </div>
+
+            <h2 class="section-title">Selecciona un juego</h2>
+            <div class="chip-row filter-row">
+              <button class="chip active" data-filter="all">Todos los juegos</button>
+              <button class="chip" data-filter="popular">Populares</button>
+              <button class="chip" data-filter="live">En vivo</button>
+            </div>
+
+            <div class="games-grid" id="gamesGrid">
+              <button class="game-card" data-go="dice" data-tags="popular live">
+                <span class="game-badge">1 vs 1</span>
+                <img class="game-icon" src="assets/ic_game_dice.png" alt="" />
+                <span class="game-name">Dados M</span>
+                <span class="game-online">412 en línea</span>
+              </button>
+              <button class="game-card" data-go="snakes" data-tags="live">
+                <img class="game-icon" src="assets/ic_game_snakes.png" alt="" />
+                <span class="game-name">Serpientes y Escaleras</span>
+                <span class="game-online">286 en línea</span>
+              </button>
+              <button class="game-card" data-go="rps" data-tags="popular">
+                <span class="game-badge">Todo o nada</span>
+                <img class="game-icon" src="assets/ic_game_rps.png" alt="" />
+                <span class="game-name">Piedra, papel o tijera</span>
+                <span class="game-online">531 en línea</span>
+              </button>
+              <button class="game-card" data-action="toast" data-message="Mano de Póker: vista no incluida en los mockups">
+                <img class="game-icon" src="assets/ic_game_poker.png" alt="" />
+                <span class="game-name">Mano de Póker</span>
+                <span class="game-online">148 en línea</span>
+              </button>
+              <button class="game-card" data-go="shooter" data-tags="popular">
+                <img class="game-icon" src="assets/ic_game_shooter.png" alt="" />
+                <span class="game-name">Disparos</span>
+                <span class="game-online">197 en línea</span>
+              </button>
+              <button class="game-card" data-action="toast" data-message="Ruleta: vista no incluida en los mockups" data-tags="live">
+                <span class="game-badge">10 giros</span>
+                <img class="game-icon" src="assets/ic_game_wheel.png" alt="" />
+                <span class="game-name">Ruleta</span>
+                <span class="game-online">352 en línea</span>
+              </button>
+            </div>
+
+            <h2 class="section-title players-title">Jugadores en la sala</h2>
+            <div class="players-row">
+              <div class="player-card">
+                <img src="assets/avatar.png" alt="" />
+                <strong>@usuario.G</strong>
+                <span>¡Listo!</span>
+              </div>
+              <div class="player-card">
+                <img src="assets/avatar.png" alt="" />
+                <strong>@u2</strong>
+                <span>¡Listo!</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 4 · ALTA DE MEDIO DE PAGO
+             ============================================================ -->
+        <section class="screen" id="payment" aria-hidden="true" data-title="Alta de medio de pago" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Alta de medio de pago</h1>
+            <button class="topbar-btn info-btn" data-action="options" aria-label="Más opciones"><span>i</span></button>
+          </header>
+
+          <div class="screen-body payment-body">
+            <p class="subtitle">Registra tus datos de pago para recibir recompensas adicionales.</p>
+
+            <div class="credit-card">
+              <img class="card-coin" src="assets/coin.png" alt="" />
+              <p class="cc-number" id="ccNumber">•••• •••• •••• ••••</p>
+              <p class="cc-label">TITULAR</p>
+              <p class="cc-holder" id="ccHolder">NOMBRE DEL TITULAR</p>
+              <p class="cc-expiry" id="ccExpiry">MM/AA</p>
+            </div>
+
+            <div class="panel payment-panel">
+              <label class="field"><input id="payHolder" type="text" placeholder="Nombre del titular" /></label>
+              <label class="field"><input type="text" placeholder="Usuario" /></label>
+              <label class="field">
+                <span class="field-icon" aria-hidden="true">
+                  <img src="assets/ic_menu_card.svg" alt="" />
+                </span>
+                <input id="payCard" type="tel" inputmode="numeric" maxlength="19" placeholder="Número de tarjeta" />
+              </label>
+              <div class="two-col">
+                <label class="field"><input id="payExpiry" type="tel" inputmode="numeric" maxlength="5" placeholder="Fecha (MM/AA)" /></label>
+                <label class="field">
+                  <input id="payCvv" type="tel" inputmode="numeric" maxlength="3" placeholder="CVV" />
+                  <span class="field-trailing" aria-hidden="true">•••</span>
+                </label>
+              </div>
+              <label class="check">
+                <input id="payDefault" type="checkbox" checked />
+                <span class="check-box" aria-hidden="true"></span>
+                <span>Usar como método de pago predeterminado</span>
+              </label>
+              <div class="two-col">
+                <button class="btn btn-outline" data-go="dashboard">Cancelar</button>
+                <button class="btn btn-primary" data-action="confirm-payment">Confirmar</button>
+              </div>
+            </div>
+
+            <div class="secure-note">
+              <img src="assets/ic_menu_shield.svg" alt="" />
+              <p>Tus datos viajan cifrados y no se comparten con otros jugadores.</p>
+            </div>
+            <button class="pill protection-pill" data-dialog="privacy">Protección de datos</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 5 · TIENDA
+             ============================================================ -->
+        <section class="screen" id="store" aria-hidden="true" data-title="Tienda" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Tienda</h1>
+            <button class="topbar-btn info-btn" data-action="options" aria-label="Más opciones"><span>i</span></button>
+          </header>
+
+          <div class="screen-body store-body">
+            <div class="balance-card store-balance">
+              <div>
+                <p class="balance-label">SALDO DISPONIBLE</p>
+                <p class="balance-value js-balance">$ 1,250.00</p>
+                <p class="balance-online">Gasta tus recompensas en artículos y cosméticos.</p>
+              </div>
+              <img class="balance-coin" src="assets/coin.png" alt="" />
+            </div>
+
+            <h2 class="section-title store-title">Tienda</h2>
+
+            <div class="list-card">
+              <img class="list-icon" src="assets/ic_game_dice.png" alt="" />
+              <div class="list-text"><strong>Artículo 1</strong><span>$ 120.00</span></div>
+              <button class="btn btn-tonal btn-small" data-action="buy" data-price="120" data-name="Artículo 1">Comprar</button>
+            </div>
+            <div class="list-card">
+              <img class="list-icon" src="assets/ic_game_shooter.png" alt="" />
+              <div class="list-text"><strong>Artículo 2</strong><span>$ 180.00</span></div>
+              <button class="btn btn-tonal btn-small" data-action="buy" data-price="180" data-name="Artículo 2">Comprar</button>
+            </div>
+            <div class="list-card">
+              <img class="list-icon" src="assets/ic_game_wheel.png" alt="" />
+              <div class="list-text"><strong>Artículo 3</strong><span>$ 240.00</span></div>
+              <button class="btn btn-tonal btn-small" data-action="buy" data-price="240" data-name="Artículo 3">Comprar</button>
+            </div>
+            <div class="list-card">
+              <img class="list-icon" src="assets/ic_game_poker.png" alt="" />
+              <div class="list-text"><strong>Artículo 4</strong><span>$ 320.00</span></div>
+              <button class="btn btn-tonal btn-small" data-action="buy" data-price="320" data-name="Artículo 4">Comprar</button>
+            </div>
+
+            <div class="panel promos-card">
+              <h3>Promociones</h3>
+              <hr />
+              <ul class="promo-list">
+                <li>2×1 en skins de dados los martes</li>
+                <li>Recarga 100 fichas y recibe 25 de regalo</li>
+                <li>Mesa de Ruleta con apuesta doble los viernes</li>
+              </ul>
+            </div>
+
+            <button class="pill protection-pill" data-dialog="privacy">Protección de datos</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 6 · DADOS M
+             ============================================================ -->
+        <section class="screen" id="dice" aria-hidden="true" data-title="Dados M" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Dados M</h1>
+            <button class="topbar-btn info-btn" data-action="options" aria-label="Más opciones"><span>i</span></button>
+          </header>
+
+          <div class="screen-body dice-body">
+            <div class="game-table">
+              <p class="table-hint">Toca para aventar los dados</p>
+              <div class="dice-row">
+                <div class="die" id="die1" data-face="5"></div>
+                <div class="die" id="die2" data-face="2"></div>
+                <div class="die" id="die3" data-face="6"></div>
+              </div>
+              <p class="dice-equation"><span id="diceEquation">5 + 2 + 6</span> = <strong id="diceTotal">13</strong></p>
+              <p class="dice-rolls" id="diceRolls">Lanzamientos: 4</p>
+              <div class="bet-pill" id="diceBet">Apuesta total: $ 30.00</div>
+            </div>
+
+            <p class="field-label">¿CUÁNTOS DADOS QUIERES LANZAR?</p>
+            <div class="chip-row dice-count-row">
+              <button class="chip" data-dice-count="1">1 dado</button>
+              <button class="chip" data-dice-count="2">2 dados</button>
+              <button class="chip active" data-dice-count="3">3 dados</button>
+            </div>
+
+            <button class="btn btn-primary btn-block dice-roll-btn" data-action="roll-dice">
+              <img class="btn-icon" src="assets/ic_game_dice.png" alt="" /> Lanzar
+            </button>
+
+            <div class="two-col">
+              <button class="btn btn-tonal" data-action="toast" data-message="Skins: vista no incluida en los mockups">Skins</button>
+              <button class="btn btn-tonal" data-action="toast" data-message="Salas: vista no incluida en los mockups">Salas</button>
+            </div>
+            <div class="two-col">
+              <button class="btn btn-outline" data-action="toast" data-message="Modo 1 vs 1 seleccionado">1 vs 1</button>
+              <button class="btn btn-outline" data-action="toast" data-message="Modo 1 vs PC seleccionado">1 vs PC</button>
+            </div>
+
+            <button class="pill protection-pill" data-dialog="privacy">Protección de datos</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 7 · SERPIENTES Y ESCALERAS
+             ============================================================ -->
+        <section class="screen" id="snakes" aria-hidden="true" data-title="Serpientes y Escaleras" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Serpientes y Escaleras</h1>
+          </header>
+
+          <div class="screen-body snakes-body">
+            <div class="turn-row">
+              <h2>¡Tu turno!</h2>
+              <span class="round-pill" id="snakesRound">Ronda 5</span>
+            </div>
+
+            <div class="board-frame">
+              <div class="board" id="snakesBoard" aria-label="Tablero de 36 casillas"></div>
+              <span class="position-badge" id="snakesPosition">Casilla 12</span>
+            </div>
+
+            <div class="roll-row">
+              <div class="die" id="snakesDie" data-face="4"></div>
+              <button class="btn btn-primary" data-action="roll-snakes">Girar</button>
+            </div>
+            <p class="move-text" id="snakesMove">Avanzas 4 casillas. · Mi posición: casilla 12</p>
+            <button class="btn btn-tonal btn-block" data-action="expand-snakes">Expandir mapa</button>
+
+            <h2 class="section-title players-title">Jugadores en la sala</h2>
+            <div class="players-row">
+              <div class="player-card">
+                <img src="assets/avatar.png" alt="" />
+                <strong>@usuario.G</strong>
+                <span>¡Listo!</span>
+              </div>
+              <div class="player-card">
+                <img src="assets/avatar.png" alt="" />
+                <strong>@u2</strong>
+                <span>¡Listo!</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 8 · PIEDRA, PAPEL O TIJERA
+             ============================================================ -->
+        <section class="screen" id="rps" aria-hidden="true" data-title="Piedra, papel o tijera" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Piedra, papel o tijera</h1>
+          </header>
+
+          <div class="screen-body rps-body">
+            <div class="opponent-row">
+              <span class="avatar-ring small"><img src="assets/avatar.png" alt="" /></span>
+              <h2>Turno de @u2</h2>
+              <span class="round-pill" id="rpsRound">Ronda 5</span>
+            </div>
+
+            <div class="game-table rps-table">
+              <h3 class="tiebreak">DESEMPATE</h3>
+              <div class="rps-arena">
+                <div class="rps-move">
+                  <img id="rpsPlayerMove" src="assets/ic_gesture_paper.png" alt="Tu jugada" />
+                  <span>TU JUGADA</span>
+                </div>
+                <div class="rps-vs">
+                  <strong>VS</strong>
+                  <span id="rpsScore">2 - 1</span>
+                </div>
+                <div class="rps-move">
+                  <img id="rpsOpponentMove" src="assets/ic_gesture_scissors.png" alt="Jugada rival" />
+                  <span>JUGADA RIVAL</span>
+                </div>
+              </div>
+              <p class="rps-result" id="rpsResult">¡Ganaste! +$ 20.00</p>
+              <p class="rps-sub" id="rpsSub">Todo o nada: apuesta duplicada</p>
+            </div>
+
+            <p class="field-label">SELECCIONA TU JUGADA</p>
+            <div class="radio-row gesture-row" id="rpsGestures">
+              <label class="radio">
+                <input type="radio" name="gesture" value="rock" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Piedra</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="gesture" value="paper" checked />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Papel</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="gesture" value="scissors" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>Tijera</span>
+              </label>
+            </div>
+
+            <p class="field-label">MONTO DE LA APUESTA</p>
+            <div class="radio-row bet-row" id="rpsBets">
+              <label class="radio simple">
+                <input type="radio" name="bet" value="10" checked />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>$10</span>
+              </label>
+              <label class="radio simple">
+                <input type="radio" name="bet" value="25" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>$25</span>
+              </label>
+              <label class="radio simple">
+                <input type="radio" name="bet" value="50" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>$50</span>
+              </label>
+              <label class="radio simple">
+                <input type="radio" name="bet" value="100" />
+                <span class="radio-dot" aria-hidden="true"></span>
+                <span>$100</span>
+              </label>
+            </div>
+
+            <div class="bet-pill light" id="rpsBet">Apuesta: $ 10.00</div>
+
+            <label class="check">
+              <input id="rpsAll" type="checkbox" />
+              <span class="check-box" aria-hidden="true"></span>
+              <span>Todo o nada: si ganas te llevas el doble</span>
+            </label>
+
+            <button class="btn btn-primary btn-block" data-action="play-rps">Jugar ronda</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             PANTALLA 9 · DISPAROS
+             ============================================================ -->
+        <section class="screen" id="shooter" aria-hidden="true" data-title="Disparos" data-back="dashboard">
+          <header class="topbar">
+            <button class="topbar-btn" data-action="back" aria-label="Regresar">
+              <svg viewBox="0 0 24 24"><path d="M15.5 4 7.5 12l8 8 1.6-1.6L10.7 12l6.4-6.4L15.5 4z" fill="currentColor"/></svg>
+            </button>
+            <h1 class="topbar-title">Disparos</h1>
+          </header>
+
+          <div class="screen-body shooter-body">
+            <div class="game-table shooter-table">
+              <p class="table-hint">Toca el blanco para apuntar</p>
+              <div class="target-wrap" id="shooterTarget">
+                <img src="assets/ic_game_shooter.png" alt="Blanco de tiro" />
+                <span class="crosshair" id="crosshair" aria-hidden="true">✚</span>
+              </div>
+              <h3 class="shooter-score">Puntaje: <span id="shooterScore">120</span></h3>
+              <p class="shooter-ammo">Municiones: <span id="shooterAmmo">6</span> de 6</p>
+              <button class="btn btn-orange btn-block" data-action="fire">
+                <img class="btn-icon" src="assets/ic_game_shooter.png" alt="" /> Disparar
+              </button>
+            </div>
+
+            <p class="field-label">ELIGE TU SKIN</p>
+            <div class="chip-row" id="shooterSkins">
+              <button class="chip active" data-skin="classic">Clásico</button>
+              <button class="chip" data-skin="neon">Neón</button>
+              <button class="chip" data-skin="wood">Madera</button>
+              <button class="chip" data-skin="gold">Dorado</button>
+            </div>
+
+            <div class="two-col">
+              <button class="btn btn-outline" data-action="toast" data-message="Modo 1 vs 1 seleccionado">1 vs 1</button>
+              <button class="btn btn-outline" data-action="toast" data-message="Modo 1 vs PC seleccionado">1 vs PC</button>
+            </div>
+            <div class="two-col">
+              <button class="btn btn-tonal" data-action="toast" data-message="Skins: vista no incluida en los mockups">Skin</button>
+              <button class="btn btn-tonal" data-action="toast" data-message="Salas: vista no incluida en los mockups">Sala</button>
+            </div>
+
+            <button class="pill protection-pill" data-dialog="privacy">Protección de datos</button>
+          </div>
+        </section>
+      </main>
+
+      <!-- ============================================================
+           PANTALLA 10 · MENÚ LATERAL
+           ============================================================ -->
+      <div class="overlay-backdrop" id="drawerBackdrop" data-action="close-drawer"></div>
+      <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menú lateral">
+        <div class="drawer-head">
+          <span class="drawer-balance js-balance">$ 1,250.00</span>
+          <span class="drawer-avatar"><img src="assets/avatar.png" alt="" /></span>
+          <strong class="drawer-user">@<span class="js-user">usuario.G</span></strong>
+          <span class="drawer-sub">Jugador verificado</span>
+        </div>
+        <nav class="drawer-menu">
+          <button class="drawer-item active" data-go="dashboard">
+            <img src="assets/ic_nav_dashboard.svg" alt="" /> Todos los juegos
+          </button>
+          <button class="drawer-item" data-go="dice">
+            <img src="assets/ic_game_dice.png" alt="" /> Dados M
+          </button>
+          <button class="drawer-item" data-go="snakes">
+            <img src="assets/ic_game_snakes.png" alt="" /> Serpientes y Escaleras
+          </button>
+          <button class="drawer-item" data-go="rps">
+            <img src="assets/ic_game_rps.png" alt="" /> Piedra, papel o tijera
+          </button>
+
+          <p class="drawer-section">MENÚ PRINCIPAL</p>
+          <button class="drawer-item" data-dialog="profile">
+            <img src="assets/ic_nav_profile.svg" alt="" /> Mi perfil
+          </button>
+          <button class="drawer-item" data-go="payment">
+            <img src="assets/ic_menu_card.svg" alt="" /> Mis tarjetas
+          </button>
+          <button class="drawer-item" data-go="store">
+            <img src="assets/ic_menu_store.svg" alt="" /> Tienda
+          </button>
+          <button class="drawer-item" data-dialog="history">
+            <img src="assets/ic_nav_history.svg" alt="" /> Historial de partidas
+          </button>
+
+          <p class="drawer-section">AJUSTES</p>
+          <button class="drawer-item" data-dialog="privacy">
+            <img src="assets/ic_menu_shield.svg" alt="" /> Protección de datos
+          </button>
+          <button class="drawer-item" data-dialog="responsible">
+            <img src="assets/ic_menu_heart.svg" alt="" /> Juego responsable
+          </button>
+          <button class="drawer-item" data-dialog="help">
+            <img src="assets/ic_nav_help.svg" alt="" /> Ayuda
+          </button>
+          <button class="drawer-item" data-action="logout">
+            <img src="assets/ic_menu_logout.svg" alt="" /> Cerrar sesión
+          </button>
+        </nav>
+      </aside>
+
+      <!-- ============================================================
+           PANTALLA 11 · MENÚ DE OPCIONES
+           ============================================================ -->
+      <div class="overlay-backdrop" id="optionsBackdrop" data-action="close-options"></div>
+      <nav class="options-menu" id="optionsMenu" aria-hidden="true" aria-label="Menú de opciones">
+        <button class="options-item" data-go="store">
+          <img src="assets/ic_menu_store.svg" alt="" /> Tienda
+        </button>
+        <button class="options-item" data-go="payment">
+          <img src="assets/ic_menu_card.svg" alt="" /> Mis tarjetas
+        </button>
+        <button class="options-item" data-dialog="privacy">
+          <img src="assets/ic_menu_shield.svg" alt="" /> Protección de datos
+        </button>
+        <button class="options-item" data-dialog="responsible">
+          <img src="assets/ic_menu_heart.svg" alt="" /> Juego responsable
+        </button>
+        <button class="options-item" data-dialog="info">
+          <img src="assets/ic_menu_info.svg" alt="" /> Información del juego
+        </button>
+        <button class="options-item" data-action="share">
+          <img src="assets/ic_menu_share.svg" alt="" /> Compartir El Azar
+        </button>
+        <button class="options-item" data-action="logout">
+          <img src="assets/ic_menu_logout.svg" alt="" /> Cerrar sesión
+        </button>
+      </nav>
+
+      <!-- Diálogo compartido -->
+      <div class="dialog-backdrop" id="dialogBackdrop">
+        <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+          <h3 id="dialogTitle"></h3>
+          <p id="dialogBody"></p>
+          <button class="btn btn-primary btn-block" data-action="close-dialog">Entendido</button>
+        </div>
+      </div>
+
+      <!-- Aviso breve -->
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <p class="stage-caption"><strong>El Azar</strong> · Prototipo navegable · 11 pantallas</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

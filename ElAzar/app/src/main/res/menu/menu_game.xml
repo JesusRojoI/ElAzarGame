@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menú contextual de la partida: reiniciar, reglas y sonido. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_restart"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="@string/menu_restart"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_rules"
+        android:icon="@drawable/ic_menu_rules"
+        android:title="@string/menu_rules"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_sound"
+        android:icon="@drawable/ic_menu_sound"
+        android:title="@string/menu_sound"
+        app:showAsAction="never" />
+</menu>

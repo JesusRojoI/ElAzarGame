@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 6. Tienda.
+    Compra de recompensas con el dinero del usuario y lista de promociones.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:orientation="vertical"
+    tools:context=".StoreActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_topbar"
+        android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+        app:title="@string/store_title"
+        app:titleTextColor="@color/white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_lg">
+
+        <!-- Encabezado con el saldo -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWallet"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/azar_orange"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_md">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:contentDescription="@string/dashboard_balance"
+                    android:src="@drawable/ic_coin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Azar_font.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dashboard_balance"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/textBalance"
+                        style="@style/Azar_font.Display"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        tools:text="$ 1,250.00" />
+
+                    <TextView
+                        style="@style/Azar_font.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/store_subtitle"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textArticlesTitle"
+            style="@style/Azar_font.Heading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/store_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardWallet" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerArticles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textArticlesTitle"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_article" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPromos"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerArticles">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <TextView
+                    style="@style/Azar_font.Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/store_promotions"
+                    android:textColor="@color/azar_orange" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@drawable/divider" />
+
+                <LinearLayout
+                    android:id="@+id/layoutPromos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textDataProtection"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_pill_cream"
+            android:gravity="center"
+            android:padding="@dimen/space_sm"
+            android:text="@string/data_protection"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPromos" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

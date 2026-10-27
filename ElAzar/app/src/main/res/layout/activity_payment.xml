@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 5. Ingreso de datos en tarjeta.
+    Registro de medios de pago para recibir recompensas adicionales.
+    Práctica 7: campos de texto, CheckBox y botones con android:onClick.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:orientation="vertical"
+    tools:context=".PaymentActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_topbar"
+        android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+        app:title="@string/payment_title"
+        app:titleTextColor="@color/white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_lg">
+
+        <TextView
+            android:id="@+id/textSubtitle"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Vista previa de la tarjeta (mejora visual sobre el prototipo) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPreview"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            app:cardBackgroundColor="@color/azar_brown"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSubtitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_md">
+
+                <ImageView
+                    android:id="@+id/imageCardBrand"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_circle_cream"
+                    android:contentDescription="@string/payment_title"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_coin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textCardNumber"
+                    style="@style/Azar_font.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_lg"
+                    android:letterSpacing="0.1"
+                    android:maxLines="1"
+                    android:text="•••• •••• •••• ••••"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@id/imageCardBrand"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textCardHolder"
+                    style="@style/Azar_font.Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/payment_hint_holder"
+                    android:textColor="@color/azar_cream"
+                    app:layout_constraintEnd_toStartOf="@id/imageCardBrand"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCardNumber"
+                    tools:text="ANA GARCÍA" />
+
+                <TextView
+                    android:id="@+id/textCardExpiry"
+                    style="@style/Azar_font.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:text="MM/AA"
+                    android:textColor="@color/azar_cream"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textCardHolder" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Formulario -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardForm"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPreview">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/payment_hint_holder">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="personName"
+                        android:capitalize="characters"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/payment_hint_user">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/payment_hint_card"
+                    app:endIconDrawable="@drawable/ic_menu_card"
+                    app:endIconMode="custom">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="creditCardNumber"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="19"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.ElAzar.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/space_sm"
+                        android:layout_weight="1"
+                        android:hint="@string/payment_hint_expiry">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputExpiry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.ElAzar.TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/payment_hint_cvv"
+                        app:endIconMode="password_toggle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputCvv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberPassword"
+                            android:maxLength="3"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkDefault"
+                    style="@style/Widget.ElAzar.CheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:text="@string/payment_default"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonCancel"
+                        style="@style/Widget.ElAzar.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_marginEnd="@dimen/space_sm"
+                        android:layout_weight="1"
+                        android:text="@string/payment_cancel" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonConfirm"
+                        style="@style/Widget.ElAzar.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_weight="1.4"
+                        android:onClick="onConfirmPayment"
+                        android:text="@string/payment_confirm" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textSecure"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_pill_cream"
+            android:drawablePadding="@dimen/space_sm"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_sm"
+            android:text="@string/payment_secure"
+            android:textSize="13sp"
+            app:drawableStartCompat="@drawable/ic_menu_shield"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardForm" />
+
+        <TextView
+            android:id="@+id/textDataProtection"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center"
+            android:text="@string/data_protection"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSecure" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

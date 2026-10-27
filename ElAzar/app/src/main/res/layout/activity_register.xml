@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 2. Crear cuenta.
+    Se practica el uso de CheckBox (términos y condiciones) sobre ConstraintLayout.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:fillViewport="true"
+    tools:context=".RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingTop="@dimen/space_md"
+        android:paddingBottom="@dimen/space_lg">
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_cream"
+            android:contentDescription="@string/action_back"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textRegisterTitle"
+            style="@style/Azar_font.Logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="@string/register_title"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageBack"
+            app:layout_constraintTop_toTopOf="@id/imageBack" />
+
+        <TextView
+            android:id="@+id/textRegisterSubtitle"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/register_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageBack" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRegister"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textRegisterSubtitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_hint_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="personName"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/register_hint_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="emailAddress"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/register_hint_user"
+                    app:prefixText="@">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/register_hint_password"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="newPassword"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/register_hint_confirm"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="newPassword"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- CheckBox: aceptación de términos (Práctica 7) -->
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkTerms"
+                    style="@style/Widget.ElAzar.CheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/register_terms"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonRegister"
+                    style="@style/Widget.ElAzar.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/register_submit" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonGoLogin"
+            style="@style/Widget.ElAzar.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/space_md"
+            android:text="@string/register_have_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardRegister" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

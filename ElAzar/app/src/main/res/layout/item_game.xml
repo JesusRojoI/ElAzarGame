@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Elemento de la rejilla de juegos del dashboard -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.ElAzar.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/space_xs"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_sm">
+
+        <ImageView
+            android:id="@+id/imageGame"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/dashboard_choose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_game_dice" />
+
+        <TextView
+            android:id="@+id/textGameName"
+            style="@style/Widget.ElAzar.TileLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageGame"
+            tools:text="Serpientes y Escaleras" />
+
+        <TextView
+            android:id="@+id/textGamePlayers"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textGameName"
+            tools:text="1 284 en línea" />
+
+        <TextView
+            android:id="@+id/textGameBadge"
+            style="@style/Azar_font.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_xs"
+            android:background="@drawable/bg_pill_orange"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10 giros"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

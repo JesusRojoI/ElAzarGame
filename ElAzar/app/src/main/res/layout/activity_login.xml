@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 1. Login inicial.
+    El usuario puede crear un nuevo perfil o iniciar sesión.
+    Layout: NestedScrollView > ConstraintLayout (Práctica 7 - ConstraintLayout).
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:fillViewport="true"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingTop="@dimen/space_lg"
+        android:paddingBottom="@dimen/space_lg">
+
+        <!-- ================= Encabezado de marca ================= -->
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:contentDescription="@string/cd_logo"
+            android:src="@drawable/ic_logo_die"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textAppName"
+            style="@style/Azar_font.Display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/app_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo" />
+
+        <TextView
+            android:id="@+id/textWelcome"
+            style="@style/Azar_font.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="@string/login_welcome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textAppName" />
+
+        <TextView
+            android:id="@+id/textTagline"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="@string/app_tagline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textWelcome" />
+
+        <!-- ================= Tarjeta de inicio de sesión ================= -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardLogin"
+            style="@style/Widget.ElAzar.Card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTagline">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <TextView
+                    style="@style/Azar_font.Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/login_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:hint="@string/login_hint_user"
+                    app:startIconDrawable="@drawable/ic_nav_profile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="username"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.ElAzar.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:hint="@string/login_hint_password"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonLogin"
+                    style="@style/Widget.ElAzar.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/login_submit"
+                    app:icon="@drawable/ic_coin"
+                    app:iconGravity="textStart"
+                    app:iconTint="@null"
+                    app:iconPadding="8dp" />
+
+                <TextView
+                    android:id="@+id/textForgot"
+                    style="@style/Azar_font.Link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/login_forgot" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ================= Acceso con redes sociales ================= -->
+        <TextView
+            android:id="@+id/textOr"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:text="@string/login_or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardLogin" />
+
+        <LinearLayout
+            android:id="@+id/rowSocial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textOr">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonGoogle"
+                style="@style/Widget.ElAzar.Button.Outlined"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginEnd="@dimen/space_sm"
+                android:layout_weight="1"
+                android:text="@string/login_google"
+                app:icon="@drawable/ic_google"
+                app:iconGravity="textStart"
+                app:iconPadding="6dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonFacebook"
+                style="@style/Widget.ElAzar.Button.Outlined"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_weight="1"
+                android:text="@string/login_facebook"
+                app:icon="@drawable/ic_facebook"
+                app:iconGravity="textStart"
+                app:iconPadding="6dp" />
+        </LinearLayout>
+
+        <!-- ================= Registro ================= -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRegister"
+            style="@style/Widget.ElAzar.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/login_register_prompt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowSocial" />
+
+        <TextView
+            android:id="@+id/textLegal"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center"
+            android:text="@string/login_legal"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonRegister" />
+
+        <TextView
+            android:id="@+id/textBrandFooter"
+            style="@style/Azar_font.Logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center"
+            android:text="@string/brand_footer"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textLegal" />
+
+        <TextView
+            android:id="@+id/textDataProtection"
+            style="@style/Azar_font.Body.Muted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:background="@drawable/bg_pill_cream"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/data_protection"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBrandFooter" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista adicional. Mesa demostrativa de ruleta.
+    El jugador apuesta a rojo o negro y hace girar la ruleta.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:orientation="vertical"
+    tools:context=".RouletteActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_topbar"
+        android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+        app:title="@string/wheel_title"
+        app:titleTextColor="@color/white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_lg">
+
+            <TextView
+                style="@style/Azar_font.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/wheel_subtitle" />
+
+            <TextView
+                android:id="@+id/textWheelBalance"
+                style="@style/Azar_font.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:background="@drawable/bg_pill_cream"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/azar_brown"
+                android:textStyle="bold"
+                tools:text="Saldo: $ 1,250.00" />
+
+            <!-- Mesa -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:background="@drawable/bg_table"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <TextView
+                    style="@style/Azar_font.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wheel_table_hint"
+                    android:textColor="@color/azar_cream"
+                    android:textSize="11sp" />
+
+                <FrameLayout
+                    android:layout_width="240dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@drawable/bg_wheel_table"
+                    android:padding="24dp">
+
+                    <ImageView
+                        android:id="@+id/imageWheel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/wheel_title"
+                        android:src="@drawable/ic_game_wheel" />
+
+                    <TextView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="top|center_horizontal"
+                        android:background="@drawable/bg_circle_cream"
+                        android:gravity="center"
+                        android:text="▼"
+                        android:textColor="@color/azar_brown"
+                        android:textSize="16sp" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/textWheelResult"
+                    style="@style/Azar_font.Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:gravity="center"
+                    android:text="@string/wheel_ready"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textWheelLast"
+                    style="@style/Azar_font.Body.Muted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    tools:text="Últimos giros: 17 · 0 · 32" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Azar_font.Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/wheel_red" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/groupWheelColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRed"
+                    style="@style/Widget.ElAzar.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/wheel_red"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBlack"
+                    style="@style/Widget.ElAzar.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wheel_black"
+                    app:checkedIconVisible="false" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                style="@style/Azar_font.Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:text="@string/wheel_bet_label" />
+
+            <RadioGroup
+                android:id="@+id/groupWheelBet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/wheelBet10"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/bet_10" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/wheelBet25"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_25" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/wheelBet50"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_50" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/wheelBet100"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_100" />
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSpin"
+                style="@style/Widget.ElAzar.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/space_md"
+                android:text="@string/wheel_spin"
+                app:icon="@drawable/ic_game_wheel"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTint="@null" />
+
+            <TextView
+                style="@style/Azar_font.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:background="@drawable/bg_pill_cream"
+                android:gravity="center"
+                android:padding="@dimen/space_sm"
+                android:text="@string/data_protection"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Opciones del grupo de radio: número de dados por lanzamiento (Práctica 7) -->
+    <string-array name="dice_counts">
+        <item>1 dado</item>
+        <item>2 dados</item>
+        <item>3 dados</item>
+    </string-array>
+
+    <!-- Apuestas disponibles para la mesa de piedra, papel o tijera -->
+    <string-array name="rps_bets">
+        <item>$10</item>
+        <item>$25</item>
+        <item>$50</item>
+        <item>$100</item>
+    </string-array>
+
+    <!-- Temas visuales de los cosméticos (skins) -->
+    <string-array name="skins">
+        <item>Clásico</item>
+        <item>Neón</item>
+        <item>Madera</item>
+        <item>Dorado</item>
+    </string-array>
+
+    <!-- Promociones activas de la tienda -->
+    <string-array name="promotions">
+        <item>2×1 en skins de dados los martes</item>
+        <item>Recarga 100 fichas y recibe 25 de regalo</item>
+        <item>Mesa de Ruleta con apuesta doble los viernes</item>
+        <item>Gana 3 partidas seguidas y llévate una skin dorada</item>
+    </string-array>
+</resources>

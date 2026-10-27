@@ -1,0 +1,7 @@
+Practica 7 interfaz de usuario y 8 Layouts, styles, themes y menus
+
+Instrucciones
+No tiene que hacer los laboratorios debe aplicar lo que tienen los laboratorios en su proyecto final. 
+Solo entregará el reporte de los avances con los nuevos elementos funcionales de su proyecto final
+Actividad en equipo. 
+https://drive.google.com/drive/folders/1zY1QNIG0e65DhSbm56Lhp7uovD1OWPnQ?usp=sharing

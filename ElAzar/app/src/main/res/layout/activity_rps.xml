@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 9. Juego "Piedra, papel o tijera" con apuesta.
+    El usuario apuesta dinero contra otro jugador; el empate se define en "Todo o nada".
+    Práctica 7: RadioGroup para la jugada y para el monto, CheckBox y TextView de resultado.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:fillViewport="true"
+    tools:context=".RpsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingBottom="@dimen/space_lg">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_topbar"
+            android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+            app:title="@string/rps_title"
+            app:titleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ===== Rival y ronda ===== -->
+        <LinearLayout
+            android:id="@+id/rowOpponent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <ImageView
+                android:id="@+id/imageOpponent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_circle_cream"
+                android:contentDescription="@string/nav_profile"
+                android:padding="3dp"
+                android:src="@drawable/ic_avatar" />
+
+            <TextView
+                android:id="@+id/textTurn"
+                style="@style/Azar_font.Heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                tools:text="Turno de @u2" />
+
+            <TextView
+                android:id="@+id/textRound"
+                style="@style/Azar_font.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_pill_orange"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/white"
+                tools:text="Ronda 5" />
+        </LinearLayout>
+
+        <!-- ===== Mesa con las jugadas ===== -->
+        <LinearLayout
+            android:id="@+id/layoutTable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_table"
+            android:orientation="vertical"
+            android:padding="@dimen/space_md"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowOpponent">
+
+            <TextView
+                android:id="@+id/textTiebreak"
+                style="@style/Azar_font.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/rps_tiebreak"
+                android:textColor="@color/azar_orange"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textPlayerMove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rps_gesture_none"
+                        android:textSize="52sp"
+                        tools:text="✊" />
+
+                    <TextView
+                        style="@style/Azar_font.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rps_your_move"
+                        android:textColor="@color/azar_cream" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Azar_font.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VS"
+                        android:textColor="@color/azar_orange" />
+
+                    <TextView
+                        android:id="@+id/textScore"
+                        style="@style/Azar_font.Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        tools:text="2 - 1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textOpponentMove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rps_gesture_none"
+                        android:textSize="52sp"
+                        tools:text="✌️" />
+
+                    <TextView
+                        style="@style/Azar_font.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rps_opponent_move"
+                        android:textColor="@color/azar_cream" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textResult"
+                style="@style/Azar_font.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:gravity="center"
+                android:textColor="@color/white"
+                tools:text="¡Ganaste! +$ 25.00" />
+        </LinearLayout>
+
+        <!-- ===== Selección de jugada (RadioGroup) ===== -->
+        <TextView
+            android:id="@+id/textSelectLabel"
+            style="@style/Azar_font.Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/rps_select"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTable" />
+
+        <RadioGroup
+            android:id="@+id/groupGesture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSelectLabel">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioRock"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rps_opt_rock" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioPaper"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rps_opt_paper" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioScissors"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rps_opt_scissors" />
+        </RadioGroup>
+
+        <!-- ===== Monto de la apuesta (RadioGroup) ===== -->
+        <TextView
+            android:id="@+id/textBetLabel"
+            style="@style/Azar_font.Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:text="@string/rps_bet_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/groupGesture" />
+
+        <RadioGroup
+            android:id="@+id/groupBet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBetLabel">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioBet10"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:onClick="onBetChanged"
+                android:text="@string/bet_10" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioBet25"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onBetChanged"
+                android:text="@string/bet_25" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioBet50"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onBetChanged"
+                android:text="@string/bet_50" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioBet100"
+                style="@style/Widget.ElAzar.RadioButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onBetChanged"
+                android:text="@string/bet_100" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textBet"
+            style="@style/Azar_font.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:background="@drawable/bg_pill_cream"
+            android:gravity="center"
+            android:padding="@dimen/space_sm"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/groupBet"
+            tools:text="Apuesta: $ 10.00" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkAllOrNothing"
+            style="@style/Widget.ElAzar.CheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/rps_all_or_nothing_hint"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBet" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonPlay"
+            style="@style/Widget.ElAzar.Button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/space_md"
+            android:onClick="onPlayClicked"
+            android:text="@string/rps_play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkAllOrNothing" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

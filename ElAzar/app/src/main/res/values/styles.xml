@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        ============================================================
+        Estilos reutilizables (Práctica 8 - Styles and Themes)
+        El laboratorio define un estilo "Lab_font"; aquí creamos la
+        familia "Azar_font" con las mismas propiedades (fontFamily,
+        textSize, textColor y textStyle) más variantes de la marca.
+        ============================================================
+    -->
+    <style name="Azar_font">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/azar_brown</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Logotipo / marca -->
+    <style name="Azar_font.Logo">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">@dimen/text_display</item>
+        <item name="android:textColor">@color/azar_brown</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <!-- Jerarquía tipográfica -->
+    <style name="Azar_font.Display" parent="Azar_font.Logo">
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="Azar_font.Title" parent="Azar_font.Logo">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="Azar_font.Heading" parent="Azar_font.Logo">
+        <item name="android:textSize">@dimen/text_heading</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Azar_font.Body">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/azar_text_primary</item>
+        <item name="android:lineSpacingMultiplier">1.15</item>
+    </style>
+
+    <style name="Azar_font.Body.Muted">
+        <item name="android:textColor">@color/azar_text_secondary</item>
+    </style>
+
+    <style name="Azar_font.Label">
+        <item name="android:textSize">@dimen/text_label</item>
+        <item name="android:textColor">@color/azar_text_secondary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="Azar_font.Link">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/azar_orange</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
+    <style name="Azar_font.OnDark">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- ================= Widgets ================= -->
+    <!--
+        Estilo base vacío. Es necesario declararlo porque AAPT deduce el padre
+        implícito de un nombre con puntos (Widget.ElAzar.Button -> Widget.ElAzar).
+    -->
+    <style name="Widget.ElAzar" parent="" />
+
+    <style name="Widget.ElAzar.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/azar_brown</item>
+    </style>
+
+    <style name="Widget.ElAzar.Button.Secondary" parent="Widget.ElAzar.Button">
+        <item name="backgroundTint">@color/azar_orange</item>
+    </style>
+
+    <style name="Widget.ElAzar.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="strokeColor">@color/azar_brown</item>
+        <item name="android:textColor">@color/azar_brown</item>
+    </style>
+
+    <style name="Widget.ElAzar.Button.Tonal" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_height">44dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">@color/azar_cream</item>
+        <item name="android:textColor">@color/azar_brown</item>
+    </style>
+
+    <style name="Widget.ElAzar.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">@dimen/card_corner</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="strokeColor">@color/azar_divider</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.ElAzar.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxStrokeColor">@color/azar_brown</item>
+        <item name="hintTextColor">@color/azar_text_secondary</item>
+        <item name="android:textColorHint">@color/azar_text_secondary</item>
+    </style>
+
+    <style name="Widget.ElAzar.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/azar_brown</item>
+        <item name="android:textColor">@color/azar_text_primary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="Widget.ElAzar.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/azar_brown</item>
+        <item name="android:textColor">@color/azar_text_primary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="Widget.ElAzar.Chip" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_bg</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="chipStrokeColor">@color/azar_orange_light</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <!-- Carta de póker del prototipo -->
+    <style name="Azar_playing_card">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">74dp</item>
+        <item name="android:background">@drawable/bg_card_back</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">?</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Marco tipo "tarjeta de dado" para las fichas de la tienda -->
+    <style name="Widget.ElAzar.TileLabel">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/azar_brown</item>
+        <item name="android:paddingTop">6dp</item>
+    </style>
+</resources>

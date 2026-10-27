@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        Tema propio de la aplicación (Práctica 8 - Configuring your styles and themes).
+        Equivalente al "Theme.Lab06" del laboratorio, pero con la paleta de El Azar.
+    -->
+    <style name="Theme.ElAzar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Colores de marca principales -->
+        <item name="colorPrimary">@color/azar_brown</item>
+        <item name="colorPrimaryVariant">@color/azar_brown_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Colores secundarios -->
+        <item name="colorSecondary">@color/azar_orange</item>
+        <item name="colorSecondaryVariant">@color/azar_brown_deep</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="android:colorBackground">@color/azar_background</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/azar_text_primary</item>
+        <item name="colorError">@color/azar_red</item>
+
+        <!-- Barra de estado -->
+        <item name="android:statusBarColor">@color/azar_brown_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/azar_brown</item>
+
+        <!-- Tipografía base -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- Estilos por defecto de los widgets -->
+        <item name="buttonStyle">@style/Widget.ElAzar.Button</item>
+        <item name="materialButtonStyle">@style/Widget.ElAzar.Button</item>
+        <item name="textInputStyle">@style/Widget.ElAzar.TextInputLayout</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.ElAzar.AlertDialog</item>
+    </style>
+
+    <!-- Tema para la pantalla de juego (fondo oscuro tipo mesa de casino) -->
+    <style name="Theme.ElAzar.Game" parent="Theme.ElAzar">
+        <item name="android:colorBackground">@color/azar_brown_dark</item>
+        <item name="colorSurface">@color/azar_brown</item>
+    </style>
+
+    <!-- Aspecto de la barra superior -->
+    <!-- Estilo base vacío para la herencia por nombre (ThemeOverlay.ElAzar.Toolbar). -->
+    <style name="ThemeOverlay.ElAzar" parent="" />
+
+    <style name="ThemeOverlay.ElAzar.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.ElAzar.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/azar_brown</item>
+    </style>
+</resources>

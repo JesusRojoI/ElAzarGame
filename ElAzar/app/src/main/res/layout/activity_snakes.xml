@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista 8. Juego "Serpientes y Escaleras".
+    Pueden unirse 2 o más jugadores en una partida; el tablero se construye en tiempo
+    de ejecución dentro de un GridLayout enmarcado por un FrameLayout (Práctica 7 y 8).
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:fillViewport="true"
+    tools:context=".SnakesActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/space_lg">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_topbar"
+            android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+            app:title="@string/snakes_title"
+            app:titleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ===== Encabezado del turno ===== -->
+        <LinearLayout
+            android:id="@+id/rowTurn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <TextView
+                android:id="@+id/textTurn"
+                style="@style/Azar_font.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/snakes_turn" />
+
+            <TextView
+                android:id="@+id/textRound"
+                style="@style/Azar_font.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_pill_orange"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/white"
+                tools:text="Ronda 5" />
+        </LinearLayout>
+
+        <!-- ===== Tablero: FrameLayout con el GridLayout dentro ===== -->
+        <FrameLayout
+            android:id="@+id/frameBoard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_board"
+            android:padding="14dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowTurn">
+
+            <GridLayout
+                android:id="@+id/gridBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alignmentMode="alignMargins"
+                android:columnCount="6"
+                android:rowCount="6"
+                android:useDefaultMargins="false" />
+
+            <TextView
+                android:id="@+id/textPosition"
+                style="@style/Azar_font.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_badge_gold"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/white"
+                tools:text="Casilla 12" />
+        </FrameLayout>
+
+        <!-- ===== Dado y acciones ===== -->
+        <LinearLayout
+            android:id="@+id/rowDice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameBoard">
+
+            <TextView
+                android:id="@+id/textDie"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_dice_face"
+                android:gravity="center"
+                android:text="@string/rps_gesture_none"
+                android:textColor="@color/azar_brown"
+                android:textSize="34sp"
+                tools:text="⚄" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRoll"
+                style="@style/Widget.ElAzar.Button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                android:onClick="onRollClicked"
+                android:text="@string/snakes_roll" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textMove"
+            style="@style/Azar_font.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/snakes_tap"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rowDice" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonExpand"
+            style="@style/Widget.ElAzar.Button.Tonal"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/snakes_expand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textMove" />
+
+        <TextView
+            android:id="@+id/textPlayersTitle"
+            style="@style/Azar_font.Heading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/snakes_players"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonExpand" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPlayers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_sm"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textPlayersTitle"
+            app:orientation="horizontal"
+            tools:listitem="@layout/item_player" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

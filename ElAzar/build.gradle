@@ -1,0 +1,6 @@
+// Archivo build.gradle (Project: El Azar)
+// Práctica 7 (Interfaz de usuario) y Práctica 8 (Layouts, styles, themes y menús).
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.24' apply false
+}

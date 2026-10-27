@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tablero de juego: marco con patrón de marca -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/azar_brown_dark" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <item android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/azar_cream" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</layer-list>

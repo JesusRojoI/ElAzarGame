@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Vista adicional. Mesa demostrativa de póker de cinco cartas.
+    Ilustra la navegación desde el tablero y una interacción mínima con apuesta.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azar_background"
+    android:orientation="vertical"
+    tools:context=".PokerActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_topbar"
+        android:theme="@style/ThemeOverlay.ElAzar.Toolbar"
+        app:title="@string/poker_title"
+        app:titleTextColor="@color/white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_lg">
+
+            <TextView
+                style="@style/Azar_font.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/poker_subtitle" />
+
+            <TextView
+                android:id="@+id/textPokerBalance"
+                style="@style/Azar_font.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:background="@drawable/bg_pill_cream"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/azar_brown"
+                android:textStyle="bold"
+                tools:text="Saldo: $ 1,250.00" />
+
+            <!-- Mesa -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:background="@drawable/bg_table"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <TextView
+                    style="@style/Azar_font.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/poker_table_hint"
+                    android:textColor="@color/azar_cream"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/card1"
+                        style="@style/Azar_playing_card"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/card2"
+                        style="@style/Azar_playing_card"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/card3"
+                        style="@style/Azar_playing_card"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/card4"
+                        style="@style/Azar_playing_card"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/card5"
+                        style="@style/Azar_playing_card" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Azar_font.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/poker_hand_label"
+                    android:textColor="@color/azar_cream" />
+
+                <TextView
+                    android:id="@+id/textPokerHand"
+                    style="@style/Azar_font.Heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/poker_result_ready"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/textPokerResult"
+                    style="@style/Azar_font.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:gravity="center"
+                    android:textColor="@color/azar_cream"
+                    tools:text="Ganaste $ 40.00" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Azar_font.Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/poker_bet_label" />
+
+            <RadioGroup
+                android:id="@+id/groupPokerBet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/pokerBet10"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/bet_10" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/pokerBet25"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_25" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/pokerBet50"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_50" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/pokerBet100"
+                    style="@style/Widget.ElAzar.RadioButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/bet_100" />
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonDeal"
+                style="@style/Widget.ElAzar.Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/space_md"
+                android:text="@string/poker_deal"
+                app:icon="@drawable/ic_game_poker"
+                app:iconGravity="textStart"
+                app:iconSize="20dp"
+                app:iconTint="@null" />
+
+            <TextView
+                style="@style/Azar_font.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:background="@drawable/bg_pill_cream"
+                android:gravity="center"
+                android:padding="@dimen/space_sm"
+                android:text="@string/data_protection"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

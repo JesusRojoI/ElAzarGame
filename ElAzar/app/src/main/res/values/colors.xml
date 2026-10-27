@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Paleta de color de la identidad visual "El Azar".
+    Los valores se obtuvieron muestreando el logo y los personajes del
+    archivo ElAzarDesigns.pdf (ver reporte, sección Identidad visual).
+-->
+<resources>
+    <!-- Marrón corporativo (dado / tipografía del logotipo) -->
+    <color name="azar_brown">#AA4400</color>
+    <color name="azar_brown_dark">#803300</color>
+    <color name="azar_brown_deep">#7D1F1F</color>
+
+    <!-- Naranja de acento (cara superior del dado) -->
+    <color name="azar_orange">#FF7F2A</color>
+    <color name="azar_orange_light">#FFB380</color>
+
+    <!-- Tonos crema / piel de los personajes -->
+    <color name="azar_peach">#FFCCAA</color>
+    <color name="azar_cream">#FFE6D5</color>
+    <color name="azar_background">#FFF4ED</color>
+
+    <!-- Colores de apoyo -->
+    <color name="azar_navy">#000080</color>
+    <color name="azar_red">#D32F2F</color>
+    <color name="azar_red_dark">#B71C1C</color>
+    <color name="azar_green">#2E7D32</color>
+    <color name="azar_gold">#E9A400</color>
+
+    <!-- Neutros -->
+    <color name="azar_text_primary">#4A2A15</color>
+    <color name="azar_text_secondary">#8A6A55</color>
+    <color name="azar_divider">#E8D5C7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="scrim">#66000000</color>
+</resources>
